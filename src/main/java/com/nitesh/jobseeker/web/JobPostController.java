@@ -3,10 +3,7 @@ package com.nitesh.jobseeker.web;
 import com.nitesh.jobseeker.model.Post;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,5 +29,10 @@ public class JobPostController {
     @GetMapping(value = "/allPosts")
     public List<Post> getPosts(HttpServletResponse response){
         return post.findAll();
+    }
+
+    @PostMapping
+    public Post addPost(@RequestBody Post newPost){
+        return post.save(newPost);
     }
 }
